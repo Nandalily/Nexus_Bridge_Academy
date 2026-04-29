@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexus Bridge Academy – Science for the Future</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B1F4A;
+  --navy-mid: #142B61;
+  --navy-light: #1E3A7A;
+  --navy-pale: #E8EDF6;
+  --gold: #C9A227;
+  --gold-light: #E8BC45;
+  --gold-pale: #FDF6E3;
+  --white: #FAFCFF;
+  --off-white: #F4F7FC;
+  --text-dark: #0D1B3E;
+  --text-mid: #3A4A6B;
+  --text-muted: #7A8BAA;
+  --border: rgba(11,31,74,0.12);
+  --ff-display: 'Playfair Display', Georgia, serif;
+  --ff-body: 'DM Sans', sans-serif;
+  --ff-mono: 'DM Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--ff-body);
+  background: var(--white);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--off-white); }
+::-webkit-scrollbar-thumb { background: var(--navy-light); }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: var(--navy);
+  height: 70px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5rem;
+  border-bottom: 2px solid var(--gold);
+}
+.nav-brand { display: flex; align-items: center; gap: 14px; cursor: pointer; text-decoration: none; }
+.nav-logo-mark {
+  width: 42px; height: 42px; position: relative; flex-shrink: 0;
+}
+.nav-logo-mark svg { width: 42px; height: 42px; }
+.nav-brand-text { line-height: 1; }
+.nav-brand-name {
+  font-family: var(--ff-display); font-size: 18px; font-weight: 700;
+  color: var(--white); letter-spacing: 0.5px;
+  display: block;
+}
+.nav-brand-tagline {
+  font-family: var(--ff-mono); font-size: 9px; letter-spacing: 3px;
+  color: var(--gold-light); text-transform: uppercase; display: block; margin-top: 2px;
+}
+.nav-links { display: flex; align-items: center; gap: 2px; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+  color: rgba(250,252,255,0.75); text-decoration: none;
+  padding: 8px 18px; position: relative;
+  transition: color 0.2s;
+  border-bottom: 2px solid transparent;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--white);
+  border-bottom-color: var(--gold);
+}
+.nav-cta {
+  font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  background: var(--gold); color: var(--navy);
+  border: none; padding: 10px 22px; cursor: pointer;
+  margin-left: 16px;
+  transition: background 0.2s, transform 0.15s;
+  font-family: var(--ff-body);
+}
+.nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+/* ── SECTIONS ── */
+section { display: none; padding-top: 70px; min-height: 100vh; }
+section.active { display: block; }
+
+/* ── PAGE FADE ANIMATION ── */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.page-in { animation: fadeIn 0.5s ease forwards; }
+
+/* ════════════════════════════════════════
+   HOME
+════════════════════════════════════════ */
+#home { background: var(--white); }
+
+.hero {
+  background: var(--navy);
+  min-height: calc(100vh - 70px);
+  display: grid; grid-template-columns: 1.1fr 0.9fr;
+  position: relative; overflow: hidden;
+}
+/* Geometric background */
+.hero-geo {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.hero-geo::before {
+  content: '';
+  position: absolute; top: -100px; right: -100px;
+  width: 600px; height: 600px; border-radius: 50%;
+  border: 80px solid rgba(201,162,39,0.07);
+}
+.hero-geo::after {
+  content: '';
+  position: absolute; bottom: -80px; left: 25%;
+  width: 400px; height: 400px; border-radius: 50%;
+  border: 50px solid rgba(201,162,39,0.05);
+}
+.hero-lines {
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(201,162,39,0.03) 0 1px,
+      transparent 1px 120px
+    );
+}
+
+.hero-left {
+  position: relative; z-index: 1;
+  padding: 5rem 3rem 5rem 5rem;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.hero-eyebrow {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: 4px;
+  color: var(--gold); text-transform: uppercase;
+  margin-bottom: 1.75rem;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+.hero-title {
+  font-family: var(--ff-display); font-size: clamp(44px, 5.5vw, 76px);
+  font-weight: 700; line-height: 1.1;
+  color: var(--white); margin-bottom: 1.5rem;
+}
+.hero-title em { color: var(--gold-light); font-style: italic; display: block; }
+.hero-subtitle {
+  font-size: 17px; line-height: 1.75; color: rgba(250,252,255,0.72);
+  max-width: 480px; margin-bottom: 2.5rem; font-weight: 300;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-gold {
+  font-family: var(--ff-body); font-size: 13px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+  background: var(--gold); color: var(--navy);
+  border: none; padding: 15px 36px; cursor: pointer;
+  text-decoration: none; display: inline-block;
+  transition: all 0.2s;
+}
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-ghost {
+  font-family: var(--ff-body); font-size: 13px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+  background: transparent; color: var(--white);
+  border: 1.5px solid rgba(250,252,255,0.3); padding: 15px 36px; cursor: pointer;
+  text-decoration: none; display: inline-block;
+  transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold-light); }
+
+.hero-right {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 4rem 3rem;
+}
+.hero-card-stack { position: relative; width: 340px; }
+.hero-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(201,162,39,0.25);
+  backdrop-filter: blur(4px);
+  padding: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.hero-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--gold);
+}
+.hero-card-label {
+  font-family: var(--ff-mono); font-size: 10px; letter-spacing: 3px;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 6px;
+}
+.hero-card-val {
+  font-family: var(--ff-display); font-size: 22px; font-weight: 600;
+  color: var(--white);
+}
+.hero-card-sub { font-size: 12px; color: rgba(250,252,255,0.55); margin-top: 3px; }
+
+/* Subjects marquee strip */
+.subjects-strip {
+  background: var(--gold);
+  padding: 14px 0; overflow: hidden;
+  white-space: nowrap;
+}
+.subjects-inner {
+  display: inline-block;
+  animation: marquee 22s linear infinite;
+}
+.subjects-inner span {
+  font-family: var(--ff-mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--navy); padding: 0 2.5rem;
+}
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* Why section */
+.why-section { padding: 6rem 5rem; background: var(--white); }
+.section-header { margin-bottom: 4rem; }
+.section-eyebrow {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: 4px;
+  color: var(--gold); text-transform: uppercase;
+  display: flex; align-items: center; gap: 12px; margin-bottom: 1rem;
+}
+.section-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+.section-title {
+  font-family: var(--ff-display); font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700; color: var(--text-dark); line-height: 1.2;
+}
+.section-title span { color: var(--navy-light); }
+.section-desc {
+  font-size: 16px; line-height: 1.8; color: var(--text-mid);
+  max-width: 580px; margin-top: 1rem; font-weight: 300;
+}
+
+.why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+.why-item {
+  padding: 2.5rem 2rem;
+  border: 1px solid var(--border);
+  position: relative; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: var(--white);
+}
+.why-item:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(11,31,74,0.1); z-index: 1; }
+.why-item::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.why-item:hover::after { transform: scaleX(1); }
+.why-num {
+  font-family: var(--ff-display); font-size: 64px; font-weight: 700;
+  color: var(--navy-pale); line-height: 1; margin-bottom: -10px;
+}
+.why-name {
+  font-family: var(--ff-display); font-size: 20px; font-weight: 600;
+  color: var(--text-dark); margin-bottom: 0.75rem;
+}
+.why-text { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+
+/* Impact strip */
+.impact-strip {
+  background: var(--navy);
+  padding: 5rem;
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 0;
+  position: relative; overflow: hidden;
+}
+.impact-strip::before {
+  content: 'NEXUS';
+  position: absolute; left: 5rem; top: 50%; transform: translateY(-50%);
+  font-family: var(--ff-display); font-size: 200px; font-weight: 700;
+  color: rgba(250,252,255,0.03); pointer-events: none; white-space: nowrap;
+  letter-spacing: -10px;
+}
+.impact-item {
+  padding: 2rem 3rem;
+  border-right: 1px solid rgba(250,252,255,0.1);
+  position: relative; z-index: 1;
+}
+.impact-item:last-child { border-right: none; }
+.impact-num {
+  font-family: var(--ff-display); font-size: 54px; font-weight: 700;
+  color: var(--gold-light); line-height: 1;
+}
+.impact-label {
+  font-size: 14px; color: rgba(250,252,255,0.65); margin-top: 6px;
+  font-weight: 300;
+}
+
+/* Philosophy strip */
+.philosophy-section {
+  padding: 6rem 5rem;
+  background: var(--navy-pale);
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center;
+}
+.philosophy-left .section-eyebrow { color: var(--navy); }
+.philosophy-left .section-eyebrow::before { background: var(--navy); }
+.philosophy-blockquote {
+  font-family: var(--ff-display); font-size: 28px; font-style: italic;
+  font-weight: 600; color: var(--navy); line-height: 1.4;
+  border-left: 4px solid var(--gold);
+  padding-left: 1.5rem; margin-top: 1rem;
+}
+.philosophy-list { list-style: none; }
+.philosophy-list li {
+  padding: 1.25rem 0; border-bottom: 1px solid rgba(11,31,74,0.1);
+  display: flex; gap: 1rem; align-items: flex-start;
+  font-size: 15px; color: var(--text-mid); line-height: 1.6;
+}
+.philosophy-list li::before {
+  content: '◆'; color: var(--gold); font-size: 10px; margin-top: 5px; flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════
+   ABOUT
+════════════════════════════════════════ */
+#about { background: var(--white); }
+
+.about-hero {
+  background: var(--navy);
+  padding: 5rem;
+  position: relative; overflow: hidden;
+  min-height: 340px; display: flex; align-items: flex-end;
+}
+.about-hero::before {
+  content: 'ABOUT';
+  position: absolute; right: 4rem; top: 50%; transform: translateY(-50%);
+  font-family: var(--ff-display); font-size: 160px; font-weight: 700;
+  color: rgba(250,252,255,0.04); letter-spacing: -8px; pointer-events: none;
+}
+.about-hero-content { position: relative; z-index: 1; }
+.page-title { font-family: var(--ff-display); font-size: 60px; font-weight: 700; color: var(--white); line-height: 1.1; }
+.page-subtitle { font-size: 16px; color: rgba(250,252,255,0.65); margin-top: 0.75rem; font-weight: 300; max-width: 520px; }
+
+.about-identity {
+  padding: 5rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+}
+.identity-concept {
+  background: var(--navy);
+  padding: 3rem;
+}
+.identity-concept-title {
+  font-family: var(--ff-display); font-size: 28px; font-weight: 700;
+  color: var(--gold-light); margin-bottom: 2rem;
+}
+.identity-word { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(250,252,255,0.1); }
+.identity-word:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.identity-word-term {
+  font-family: var(--ff-display); font-size: 24px; font-weight: 700;
+  color: var(--gold);
+}
+.identity-word-colon { color: rgba(250,252,255,0.3); }
+.identity-word-def { font-size: 14px; color: rgba(250,252,255,0.65); line-height: 1.7; margin-top: 4px; }
+
+.colours-section { margin-top: 0; }
+.colours-title {
+  font-family: var(--ff-display); font-size: 26px; font-weight: 600;
+  color: var(--text-dark); margin-bottom: 1.5rem;
+}
+.colour-item {
+  display: flex; align-items: center; gap: 1.5rem;
+  padding: 1.25rem 0; border-bottom: 1px solid var(--border);
+}
+.colour-swatch {
+  width: 52px; height: 52px; flex-shrink: 0; border: 1px solid rgba(11,31,74,0.15);
+}
+.colour-name { font-family: var(--ff-display); font-size: 18px; font-weight: 600; color: var(--text-dark); }
+.colour-meaning { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+.vmc-section { padding: 5rem; background: var(--off-white); }
+.vmc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+.vmc-card {
+  background: var(--white); padding: 2.5rem;
+  border-top: 4px solid var(--navy);
+  position: relative;
+}
+.vmc-card.gold-top { border-top-color: var(--gold); }
+.vmc-icon { font-size: 32px; margin-bottom: 1rem; }
+.vmc-label {
+  font-family: var(--ff-mono); font-size: 10px; letter-spacing: 3px;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.vmc-card-title {
+  font-family: var(--ff-display); font-size: 24px; font-weight: 700;
+  color: var(--text-dark); margin-bottom: 1rem;
+}
+.vmc-text { font-size: 14px; color: var(--text-mid); line-height: 1.75; }
+
+.values-section { padding: 5rem; }
+.values-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 1rem; margin-top: 3rem; }
+.value-tile {
+  background: var(--navy);
+  padding: 2rem 1rem; text-align: center;
+  position: relative; overflow: hidden;
+  transition: transform 0.2s;
+}
+.value-tile:hover { transform: translateY(-4px); }
+.value-tile::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--gold);
+}
+.value-tile-text {
+  font-family: var(--ff-display); font-size: 15px; font-weight: 600;
+  color: var(--white);
+}
+
+/* ════════════════════════════════════════
+   PROGRAMS
+════════════════════════════════════════ */
+#programs { background: var(--white); }
+
+.programs-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1A2F5E 100%);
+  padding: 5rem;
+  position: relative; overflow: hidden; min-height: 340px; display: flex; align-items: flex-end;
+}
+.programs-hero::before {
+  content: 'LEARN';
+  position: absolute; right: 3rem; top: 50%; transform: translateY(-50%);
+  font-family: var(--ff-display); font-size: 160px; font-weight: 700;
+  color: rgba(250,252,255,0.04); pointer-events: none;
+}
+
+.levels-section { padding: 5rem; }
+.levels-tabs { display: flex; gap: 0; margin-bottom: 3rem; border-bottom: 2px solid var(--border); }
+.level-tab {
+  font-family: var(--ff-body); font-size: 15px; font-weight: 600;
+  padding: 14px 36px; cursor: pointer; border: none; background: transparent;
+  color: var(--text-muted); border-bottom: 3px solid transparent; margin-bottom: -2px;
+  transition: all 0.2s;
+}
+.level-tab.active { color: var(--navy); border-bottom-color: var(--gold); }
+.level-tab:hover:not(.active) { color: var(--text-dark); }
+
+.level-content { display: none; }
+.level-content.active { display: block; }
+.level-intro {
+  display: grid; grid-template-columns: 1fr 2fr; gap: 4rem;
+  margin-bottom: 3rem; align-items: start;
+}
+.level-badge {
+  background: var(--navy); padding: 2.5rem; text-align: center;
+}
+.level-badge-code {
+  font-family: var(--ff-display); font-size: 48px; font-weight: 700;
+  color: var(--gold-light); line-height: 1;
+}
+.level-badge-name {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: 3px;
+  color: rgba(250,252,255,0.6); text-transform: uppercase; margin-top: 8px;
+}
+.level-badge-classes {
+  font-size: 20px; font-weight: 600; color: var(--white); margin-top: 1rem;
+}
+.level-desc-title {
+  font-family: var(--ff-display); font-size: 30px; font-weight: 700;
+  color: var(--text-dark); margin-bottom: 1rem;
+}
+.level-desc-text { font-size: 15px; color: var(--text-mid); line-height: 1.8; font-weight: 300; }
+
+.subjects-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1rem; }
+.subject-card {
+  padding: 2rem 1.5rem;
+  border: 1px solid var(--border);
+  position: relative; overflow: hidden;
+  cursor: default;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.subject-card:hover { box-shadow: 0 8px 24px rgba(11,31,74,0.12); transform: translateY(-3px); }
+.subject-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: var(--gold);
+}
+.subject-icon { font-size: 28px; margin-bottom: 0.75rem; display: block; }
+.subject-name {
+  font-family: var(--ff-display); font-size: 17px; font-weight: 600;
+  color: var(--text-dark); margin-bottom: 0.25rem;
+}
+.subject-code { font-family: var(--ff-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 2px; }
+
+/* Delivery model */
+.delivery-section { padding: 5rem; background: var(--navy); }
+.delivery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+.delivery-card {
+  background: rgba(250,252,255,0.05);
+  border: 1px solid rgba(201,162,39,0.2);
+  padding: 2rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+.delivery-card:hover { border-color: var(--gold); background: rgba(201,162,39,0.06); }
+.delivery-num {
+  font-family: var(--ff-display); font-size: 42px; font-weight: 700;
+  color: rgba(201,162,39,0.25); line-height: 1; margin-bottom: -8px;
+}
+.delivery-name {
+  font-family: var(--ff-display); font-size: 20px; font-weight: 600;
+  color: var(--white); margin-bottom: 0.75rem;
+}
+.delivery-text { font-size: 13px; color: rgba(250,252,255,0.6); line-height: 1.7; }
+
+/* Assessment */
+.assessment-section { padding: 5rem; background: var(--off-white); }
+.assessment-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+.assess-pill {
+  background: var(--navy); color: var(--white);
+  font-family: var(--ff-mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 12px 24px;
+  border-left: 3px solid var(--gold);
+}
+
+/* How it works */
+.how-section { padding: 5rem; }
+.how-steps { display: grid; grid-template-columns: repeat(5,1fr); gap: 0; position: relative; margin-top: 3rem; }
+.how-steps::before {
+  content: ''; position: absolute;
+  top: 42px; left: 10%; right: 10%; height: 2px;
+  background: repeating-linear-gradient(90deg, var(--gold) 0 20px, transparent 20px 30px);
+}
+.how-step { text-align: center; position: relative; padding: 0 1rem; }
+.how-step-circle {
+  width: 84px; height: 84px; margin: 0 auto 1.25rem;
+  background: var(--navy); border: 3px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+}
+.how-step-num {
+  font-family: var(--ff-display); font-size: 28px; font-weight: 700;
+  color: var(--gold);
+}
+.how-step-name {
+  font-family: var(--ff-display); font-size: 14px; font-weight: 600;
+  color: var(--text-dark); margin-bottom: 0.4rem;
+}
+.how-step-text { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+/* ════════════════════════════════════════
+   CONTACT
+════════════════════════════════════════ */
+#contact { background: var(--white); }
+
+.contact-hero {
+  background: var(--navy);
+  padding: 5rem;
+  position: relative; overflow: hidden; min-height: 340px; display: flex; align-items: flex-end;
+}
+.contact-hero::before {
+  content: 'CONNECT';
+  position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);
+  font-family: var(--ff-display); font-size: 130px; font-weight: 700;
+  color: rgba(250,252,255,0.03); pointer-events: none;
+}
+
+.contact-body { display: grid; grid-template-columns: 1fr 1fr; }
+.contact-info { padding: 5rem; background: var(--navy); }
+.contact-details-title {
+  font-family: var(--ff-display); font-size: 32px; font-weight: 700;
+  color: var(--white); margin-bottom: 2.5rem;
+}
+.contact-detail-item {
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  margin-bottom: 2rem;
+}
+.contact-detail-icon {
+  width: 44px; height: 44px; background: rgba(201,162,39,0.15);
+  border: 1px solid rgba(201,162,39,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.contact-detail-label {
+  font-family: var(--ff-mono); font-size: 10px; letter-spacing: 3px;
+  color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 4px;
+}
+.contact-detail-val {
+  font-size: 15px; color: var(--white); font-weight: 500;
+}
+.contact-detail-sub { font-size: 12px; color: rgba(250,252,255,0.5); margin-top: 2px; }
+
+.connect-note {
+  margin-top: 3rem; padding: 1.5rem;
+  background: rgba(201,162,39,0.1);
+  border-left: 3px solid var(--gold);
+}
+.connect-note-text {
+  font-family: var(--ff-display); font-size: 16px; font-style: italic;
+  color: rgba(250,252,255,0.8); line-height: 1.6;
+}
+
+.contact-form-area { padding: 5rem; background: var(--off-white); }
+.form-title {
+  font-family: var(--ff-display); font-size: 36px; font-weight: 700;
+  color: var(--text-dark); margin-bottom: 0.5rem;
+}
+.form-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 2.5rem; font-weight: 300; }
+
+.form-group { margin-bottom: 1.25rem; }
+.form-label {
+  font-family: var(--ff-mono); font-size: 10px; font-weight: 500; letter-spacing: 2px;
+  color: var(--navy); text-transform: uppercase; display: block; margin-bottom: 6px;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%; font-family: var(--ff-body); font-size: 14px;
+  background: var(--white); border: 1.5px solid rgba(11,31,74,0.15);
+  padding: 12px 16px; color: var(--text-dark); outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--navy); }
+.form-textarea { resize: vertical; min-height: 120px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-submit {
+  width: 100%;
+  font-family: var(--ff-body); font-size: 13px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--navy); color: var(--white);
+  border: none; padding: 16px; cursor: pointer; margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+.form-submit:hover { background: var(--navy-light); }
+.form-success {
+  display: none;
+  background: #EAF5EA; border-left: 4px solid #2A7A2A;
+  padding: 1rem 1.25rem;
+  font-size: 14px; color: #1A4A1A; margin-top: 1rem;
+  font-family: var(--ff-body);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy);
+  border-top: 3px solid var(--gold);
+  padding: 4rem 5rem 2rem;
+}
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-brand-name {
+  font-family: var(--ff-display); font-size: 26px; font-weight: 700;
+  color: var(--white); margin-bottom: 4px;
+}
+.footer-brand-motto {
+  font-family: var(--ff-mono); font-size: 10px; letter-spacing: 3px;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 1rem;
+}
+.footer-brand-desc { font-size: 13px; color: rgba(250,252,255,0.55); line-height: 1.7; }
+.footer-col-title {
+  font-family: var(--ff-mono); font-size: 10px; letter-spacing: 3px;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 1.25rem;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul li a {
+  font-size: 13px; color: rgba(250,252,255,0.6); text-decoration: none; transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(--gold-light); }
+.footer-divider { border: none; border-top: 1px solid rgba(250,252,255,0.1); margin-bottom: 1.5rem; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+.footer-copy { font-size: 12px; color: rgba(250,252,255,0.4); }
+.footer-ref {
+  font-family: var(--ff-mono); font-size: 10px; letter-spacing: 2px;
+  color: rgba(201,162,39,0.5); text-transform: uppercase;
+}
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 2rem; right: 2rem;
+  background: var(--navy); color: var(--white);
+  font-family: var(--ff-body); font-size: 13px; font-weight: 500;
+  padding: 14px 24px;
+  border-left: 3px solid var(--gold);
+  z-index: 9999; opacity: 0; transform: translateX(30px);
+  transition: all 0.3s; pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateX(0); }
+
+/* ── ENROLL CTA STRIP ── */
+.enroll-strip {
+  background: var(--gold);
+  padding: 4rem 5rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 3rem;
+}
+.enroll-strip-text { font-family: var(--ff-display); font-size: 32px; font-weight: 700; color: var(--navy); }
+.enroll-strip-sub { font-size: 14px; color: var(--navy); opacity: 0.75; margin-top: 4px; }
+.btn-navy {
+  font-family: var(--ff-body); font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  background: var(--navy); color: var(--white);
+  border: none; padding: 16px 40px; cursor: pointer; white-space: nowrap;
+  transition: background 0.2s;
+  text-decoration: none; display: inline-block;
+}
+.btn-navy:hover { background: var(--navy-light); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  nav { padding: 0 1.5rem; }
+  .nav-links a { padding: 8px 10px; font-size: 12px; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .why-grid { grid-template-columns: 1fr 1fr; }
+  .subjects-grid { grid-template-columns: repeat(3,1fr); }
+  .how-steps { grid-template-columns: 1fr 1fr; }
+  .how-steps::before { display: none; }
+  .contact-body { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .values-grid { grid-template-columns: repeat(3,1fr); }
+  .about-identity { grid-template-columns: 1fr; }
+  .philosophy-section { grid-template-columns: 1fr; }
+  .level-intro { grid-template-columns: 1fr; }
+  .delivery-grid { grid-template-columns: 1fr 1fr; }
+  .vmc-grid { grid-template-columns: 1fr; }
+  .impact-strip { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav>
+  <a class="nav-brand" href="#" onclick="showSection('home'); return false;">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="42" height="42" fill="none"/>
+        <!-- Bridge structure -->
+        <path d="M4 30 L21 12 L38 30" stroke="#C9A227" stroke-width="2.5" fill="none"/>
+        <path d="M4 30 L38 30" stroke="#C9A227" stroke-width="2.5"/>
+        <!-- Verticals -->
+        <line x1="14" y1="21" x2="14" y2="30" stroke="rgba(250,252,255,0.5)" stroke-width="1.5"/>
+        <line x1="21" y1="14" x2="21" y2="30" stroke="rgba(250,252,255,0.5)" stroke-width="1.5"/>
+        <line x1="28" y1="21" x2="28" y2="30" stroke="rgba(250,252,255,0.5)" stroke-width="1.5"/>
+        <!-- Nodes -->
+        <circle cx="4" cy="30" r="2.5" fill="#C9A227"/>
+        <circle cx="21" cy="12" r="2.5" fill="#C9A227"/>
+        <circle cx="38" cy="30" r="2.5" fill="#C9A227"/>
+      </svg>
+    </div>
+    <div class="nav-brand-text">
+      <span class="nav-brand-name">Nexus Bridge Academy</span>
+      <span class="nav-brand-tagline">Science for the Future</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#" class="active" id="nav-home" onclick="showSection('home'); return false;">Home</a>
+    <a href="#" id="nav-about" onclick="showSection('about'); return false;">About</a>
+    <a href="#" id="nav-programs" onclick="showSection('programs'); return false;">Programs</a>
+    <a href="#" id="nav-contact" onclick="showSection('contact'); return false;">Contact</a>
+    <button class="nav-cta" onclick="showSection('contact')">Enroll Now</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HOME
+═══════════════════════════════════════ -->
+<section id="home" class="active page-in">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-geo"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-left">
+      <div class="hero-eyebrow">Virtual Academic Support · Uganda</div>
+      <h1 class="hero-title">
+        Bridging the<br>
+        Gap Between<br>
+        <em>Learning & Mastery</em>
+      </h1>
+      <p class="hero-subtitle">A modern, fully virtual academy delivering structured, curriculum-aligned Science and Computing education for secondary school students — anytime, anywhere.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-gold" onclick="showSection('programs'); return false;">Explore Programs</a>
+        <a href="#" class="btn-ghost" onclick="showSection('about'); return false;">About the Academy</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card-stack">
+        <div class="hero-card">
+          <div class="hero-card-label">Academic Levels</div>
+          <div class="hero-card-val">O-Level & A-Level</div>
+          <div class="hero-card-sub">S1 – S6 secondary education</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">Subjects Offered</div>
+          <div class="hero-card-val">5 Core Disciplines</div>
+          <div class="hero-card-sub">Biology · Chemistry · Physics · Mathematics · Computing</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">Curriculum Standard</div>
+          <div class="hero-card-val">NCDC Aligned</div>
+          <div class="hero-card-sub">Uganda National Curriculum Development Centre</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-label">Exam Preparation</div>
+          <div class="hero-card-val">UCE & UACE Ready</div>
+          <div class="hero-card-sub">Structured exam revision programs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBJECTS TICKER -->
+  <div class="subjects-strip">
+    <div class="subjects-inner">
+      <span>Biology</span><span>Chemistry</span><span>Physics</span>
+      <span>Mathematics</span><span>Computer Studies</span>
+      <span>O-Level</span><span>A-Level</span>
+      <span>UCE Preparation</span><span>UACE Preparation</span>
+      <span>Science for the Future</span>
+      <!-- duplicate for seamless loop -->
+      <span>Biology</span><span>Chemistry</span><span>Physics</span>
+      <span>Mathematics</span><span>Computer Studies</span>
+      <span>O-Level</span><span>A-Level</span>
+      <span>UCE Preparation</span><span>UACE Preparation</span>
+      <span>Science for the Future</span>
+    </div>
+  </div>
+
+  <!-- WHY SECTION -->
+  <div class="why-section">
+    <div class="section-header" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;">
+      <div>
+        <div class="section-eyebrow">Why Nexus Bridge</div>
+        <h2 class="section-title">Choose <span>Excellence</span><br>in Virtual Learning</h2>
+      </div>
+      <p class="section-desc">Nexus Bridge Academy fills the critical gap between classroom learning and exam readiness — with structured content, real teachers, and continuous assessment.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-num">01</div>
+        <div class="why-name">Curriculum-Aligned</div>
+        <p class="why-text">All learning materials are meticulously aligned with the Uganda NCDC syllabus, ensuring every lesson directly supports national examination success.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">02</div>
+        <div class="why-name">Self-Paced Freedom</div>
+        <p class="why-text">Study on your schedule. Whether it's a weekend, holiday, or late night — your learning modules are available whenever you are ready to engage.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">03</div>
+        <div class="why-name">Qualified Instructors</div>
+        <p class="why-text">Expert teachers provide real-time guidance, feedback, and clarification to ensure no learner is left behind on their path to mastery.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">04</div>
+        <div class="why-name">Continuous Assessment</div>
+        <p class="why-text">Quizzes, assignments, topic tests, and end-of-term exams keep learners on track and provide measurable evidence of academic progress.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">05</div>
+        <div class="why-name">Science & Computing Focus</div>
+        <p class="why-text">Specialised exclusively in Science and Computing — our depth of expertise in these disciplines gives learners a decisive competitive advantage.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">06</div>
+        <div class="why-name">Accessible Everywhere</div>
+        <p class="why-text">No geographical barriers. Any student with internet access can join, learn, and excel — bridging the divide between urban and rural learners.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPACT STRIP -->
+  <div class="impact-strip">
+    <div class="impact-item">
+      <div class="impact-num">S1–S6</div>
+      <div class="impact-label">All secondary school levels covered across both O-Level and A-Level</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-num">5+</div>
+      <div class="impact-label">Core Science & Computing subjects with structured, exam-ready modules</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-num">24/7</div>
+      <div class="impact-label">Learning resources available anytime, anywhere — weekends and holidays included</div>
+    </div>
+  </div>
+
+  <!-- PHILOSOPHY STRIP -->
+  <div class="philosophy-section">
+    <div class="philosophy-left">
+      <div class="section-eyebrow" style="color:var(--navy);">Our Philosophy</div>
+      <h2 class="section-title" style="font-size:clamp(28px,3.5vw,44px);">What We<br>Believe</h2>
+      <blockquote class="philosophy-blockquote" style="margin-top:1.5rem;">
+        "Every learner can excel with the right support"
+      </blockquote>
+    </div>
+    <div>
+      <ul class="philosophy-list">
+        <li>Every learner can excel with the right support — no student is beyond academic reach.</li>
+        <li>Learning should be continuous beyond the classroom and never bound by school hours.</li>
+        <li>Digital education enhances access and flexibility for every type of learner.</li>
+        <li>Mastery comes through structured practice and guidance from qualified professionals.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ENROLL CTA -->
+  <div class="enroll-strip">
+    <div>
+      <div class="enroll-strip-text">Start Your Academic Journey Today</div>
+      <div class="enroll-strip-sub">Join hundreds of students preparing for UCE and UACE excellence</div>
+    </div>
+    <a href="#" class="btn-navy" onclick="showSection('contact'); return false;">Enroll Now →</a>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Nexus Bridge Academy</div>
+        <div class="footer-brand-motto">Science for the Future</div>
+        <p class="footer-brand-desc">A fully virtual academic support institution delivering structured, self-paced, and curriculum-aligned learning for secondary school students in Science and Computing.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Navigation</div>
+        <ul>
+          <li><a href="#" onclick="showSection('home'); return false;">Home</a></li>
+          <li><a href="#" onclick="showSection('about'); return false;">About</a></li>
+          <li><a href="#" onclick="showSection('programs'); return false;">Programs</a></li>
+          <li><a href="#" onclick="showSection('contact'); return false;">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Programs</div>
+        <ul>
+          <li><a href="#" onclick="showSection('programs'); return false;">O-Level (S1–S4)</a></li>
+          <li><a href="#" onclick="showSection('programs'); return false;">A-Level (S5–S6)</a></li>
+          <li><a href="#" onclick="showSection('programs'); return false;">UCE Preparation</a></li>
+          <li><a href="#" onclick="showSection('programs'); return false;">UACE Preparation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contact</div>
+        <ul>
+          <li><a href="tel:+256793336401">+256 793 336 401</a></li>
+          <li><a href="mailto:info@nexusbridge.ac.ug">info@nexusbridge.ac.ug</a></li>
+          <li><a href="http://www.nexusbridge.ac.ug">www.nexusbridge.ac.ug</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2025 Nexus Bridge Academy. All rights reserved.</div>
+      <div class="footer-ref">Ref: NBA001/1 · Cables: "nexusbridge"</div>
+    </div>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════ -->
+<section id="about" class="page-in">
+  <div class="about-hero">
+    <div class="about-hero-content">
+      <div class="hero-eyebrow" style="color:var(--gold);font-family:var(--ff-mono);font-size:11px;letter-spacing:4px;display:flex;align-items:center;gap:12px;margin-bottom:1rem;text-transform:uppercase;">
+        <span style="display:block;width:28px;height:1px;background:var(--gold);"></span>
+        Who We Are
+      </div>
+      <h1 class="page-title">About the Academy</h1>
+      <p class="page-subtitle">A modern virtual institution built to bridge learning gaps and empower students through innovative digital education.</p>
+    </div>
+  </div>
+
+  <!-- IDENTITY -->
+  <div class="about-identity">
+    <div class="identity-concept">
+      <div class="identity-concept-title">Our Core Identity</div>
+      <div class="identity-word">
+        <div class="identity-word-term">NEXUS <span class="identity-word-colon">:</span></div>
+        <div class="identity-word-def">A central point where knowledge connects and integrates across disciplines — the hub of academic convergence.</div>
+      </div>
+      <div class="identity-word">
+        <div class="identity-word-term">BRIDGE <span class="identity-word-colon">:</span></div>
+        <div class="identity-word-def">The role of connecting learners from gaps-in-understanding to full academic mastery — closing the distance between potential and performance.</div>
+      </div>
+      <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(250,252,255,0.1);">
+        <div style="font-family:var(--ff-display);font-size:13px;font-style:italic;color:rgba(250,252,255,0.5);margin-bottom:0.5rem;">Together, we represent</div>
+        <div style="font-family:var(--ff-display);font-size:20px;font-weight:600;color:var(--white);line-height:1.4;">A connected and supportive system of learning designed to enhance academic success.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="colours-section">
+        <div class="colours-title">Official Academy Colours</div>
+        <div class="colour-item">
+          <div class="colour-swatch" style="background:#0B1F4A;"></div>
+          <div>
+            <div class="colour-name">Navy Blue</div>
+            <div class="colour-meaning">Knowledge, intellectual depth, discipline, and academic excellence</div>
+          </div>
+        </div>
+        <div class="colour-item">
+          <div class="colour-swatch" style="background:#C9A227;"></div>
+          <div>
+            <div class="colour-name">Gold</div>
+            <div class="colour-meaning">Achievement, success, and high performance in learning</div>
+          </div>
+        </div>
+        <div class="colour-item">
+          <div class="colour-swatch" style="background:#FAFCFF;border:1px solid #DDD;"></div>
+          <div>
+            <div class="colour-name">White</div>
+            <div class="colour-meaning">Clarity, simplicity, and transparency in education</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem;">
+        <div class="colours-title">Academy at a Glance</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;">
+          <div style="background:var(--navy-pale);padding:1.25rem;">
+            <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:2px;color:var(--navy);text-transform:uppercase;margin-bottom:4px;">Nature</div>
+            <div style="font-size:14px;color:var(--text-dark);font-weight:500;">Fully Virtual Academy</div>
+          </div>
+          <div style="background:var(--navy-pale);padding:1.25rem;">
+            <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:2px;color:var(--navy);text-transform:uppercase;margin-bottom:4px;">Curriculum</div>
+            <div style="font-size:14px;color:var(--text-dark);font-weight:500;">NCDC Uganda Aligned</div>
+          </div>
+          <div style="background:var(--navy-pale);padding:1.25rem;">
+            <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:2px;color:var(--navy);text-transform:uppercase;margin-bottom:4px;">Focus</div>
+            <div style="font-size:14px;color:var(--text-dark);font-weight:500;">Science & Computing</div>
+          </div>
+          <div style="background:var(--navy-pale);padding:1.25rem;">
+            <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:2px;color:var(--navy);text-transform:uppercase;margin-bottom:4px;">Ref Number</div>
+            <div style="font-size:14px;color:var(--text-dark);font-weight:500;font-family:var(--ff-mono);">NBA001/1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISION MISSION CORE VALUES -->
+  <div class="vmc-section">
+    <div class="section-eyebrow">Foundation</div>
+    <h2 class="section-title">Vision, Mission &amp; Core Values</h2>
+    <div class="vmc-grid" style="margin-top:3rem;">
+      <div class="vmc-card">
+        <div class="vmc-icon">🔭</div>
+        <div class="vmc-label">Our Vision</div>
+        <div class="vmc-card-title">Where We're Going</div>
+        <p class="vmc-text">To be a leading virtual academic support institution that bridges learning gaps and empowers students to achieve excellence in Science and Computing through accessible and innovative digital education.</p>
+      </div>
+      <div class="vmc-card gold-top">
+        <div class="vmc-icon">🎯</div>
+        <div class="vmc-label">Our Mission</div>
+        <div class="vmc-card-title">What We Do</div>
+        <p class="vmc-text">To provide structured, self-paced, and curriculum-aligned virtual learning in Science and Computing by connecting learners with qualified instructors, digital learning resources, and continuous assessment systems.</p>
+      </div>
+      <div class="vmc-card">
+        <div class="vmc-icon">📋</div>
+        <div class="vmc-label">Our Objectives</div>
+        <div class="vmc-card-title">How We Serve</div>
+        <p class="vmc-text">Bridge learning gaps during weekends and holidays. Deliver self-paced NCDC-aligned learning. Improve national examination performance. Offer continuous assessment, feedback, and promote digital learning skills.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUES -->
+  <div class="values-section">
+    <div class="section-eyebrow">What Drives Us</div>
+    <h2 class="section-title">Core Values</h2>
+    <div class="values-grid">
+      <div class="value-tile"><div class="value-tile-text">Excellence</div></div>
+      <div class="value-tile"><div class="value-tile-text">Integrity</div></div>
+      <div class="value-tile"><div class="value-tile-text">Innovation</div></div>
+      <div class="value-tile"><div class="value-tile-text">Accessibility</div></div>
+      <div class="value-tile"><div class="value-tile-text">Discipline</div></div>
+      <div class="value-tile"><div class="value-tile-text">Academic Support</div></div>
+    </div>
+  </div>
+
+  <!-- ENROLL CTA -->
+  <div class="enroll-strip">
+    <div>
+      <div class="enroll-strip-text">Ready to Bridge the Gap?</div>
+      <div class="enroll-strip-sub">Enroll today and begin your journey toward academic mastery</div>
+    </div>
+    <a href="#" class="btn-navy" onclick="showSection('contact'); return false;">Get Started →</a>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Nexus Bridge Academy</div>
+        <div class="footer-brand-motto">Science for the Future</div>
+        <p class="footer-brand-desc">Dedicated to providing structured, self-paced, and instructor-guided learning for secondary school students in Uganda.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Navigation</div>
+        <ul>
+          <li><a href="#" onclick="showSection('home'); return false;">Home</a></li>
+          <li><a href="#" onclick="showSection('about'); return false;">About</a></li>
+          <li><a href="#" onclick="showSection('programs'); return false;">Programs</a></li>
+          <li><a href="#" onclick="showSection('contact'); return false;">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Subjects</div>
+        <ul>
+          <li><a href="#">Biology</a></li>
+          <li><a href="#">Chemistry</a></li>
+          <li><a href="#">Physics</a></li>
+          <li><a href="#">Mathematics</a></li>
+          <li><a href="#">Computer Studies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contact</div>
+        <ul>
+          <li><a href="tel:+256793336401">+256 793 336 401</a></li>
+          <li><a href="mailto:info@nexusbridge.ac.ug">info@nexusbridge.ac.ug</a></li>
+          <li><a href="http://www.nexusbridge.ac.ug">www.nexusbridge.ac.ug</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2025 Nexus Bridge Academy. All rights reserved.</div>
+      <div class="footer-ref">Ref: NBA001/1</div>
+    </div>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PROGRAMS
+═══════════════════════════════════════ -->
+<section id="programs" class="page-in">
+  <div class="programs-hero">
+    <div class="about-hero-content">
+      <div class="hero-eyebrow" style="color:var(--gold);font-family:var(--ff-mono);font-size:11px;letter-spacing:4px;display:flex;align-items:center;gap:12px;margin-bottom:1rem;text-transform:uppercase;">
+        <span style="display:block;width:28px;height:1px;background:var(--gold);"></span>
+        Academic Programs
+      </div>
+      <h1 class="page-title">Our Programs</h1>
+      <p class="page-subtitle">Structured, NCDC-aligned programs for both Ordinary and Advanced Level learners in Science and Computing.</p>
+    </div>
+  </div>
+
+  <!-- LEVEL TABS -->
+  <div class="levels-section">
+    <div class="levels-tabs">
+      <button class="level-tab active" onclick="switchLevel('olevel', this)">Ordinary Level (S1–S4)</button>
+      <button class="level-tab" onclick="switchLevel('alevel', this)">Advanced Level (S5–S6)</button>
+    </div>
+
+    <!-- O-LEVEL -->
+    <div class="level-content active" id="level-olevel">
+      <div class="level-intro">
+        <div class="level-badge">
+          <div class="level-badge-code">O–L</div>
+          <div class="level-badge-name">Ordinary Level</div>
+          <div class="level-badge-classes">Senior 1 to Senior 4</div>
+        </div>
+        <div>
+          <h2 class="level-desc-title">Ordinary Level Science & Computing</h2>
+          <p class="level-desc-text">The Ordinary Level program serves S1 through S4 learners and is designed to build strong foundational knowledge across all five Science and Computing disciplines. All modules are aligned with the Uganda National Curriculum Development Centre (NCDC) O-Level syllabus and directly prepare learners for the Uganda Certificate of Education (UCE) national examinations.</p>
+          <div style="margin-top:1.5rem;padding:1.25rem;background:var(--gold-pale);border-left:3px solid var(--gold);">
+            <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:2px;color:var(--navy);text-transform:uppercase;margin-bottom:4px;">Exam Target</div>
+            <div style="font-family:var(--ff-display);font-size:18px;font-weight:600;color:var(--text-dark);">Uganda Certificate of Education (UCE)</div>
+          </div>
+        </div>
+      </div>
+      <div class="subjects-grid">
+        <div class="subject-card">
+          <span class="subject-icon">🦠</span>
+          <div class="subject-name">Biology</div>
+          <div class="subject-code">O-BIO · S1–S4</div>
+        </div>
+        <div class="subject-card">
+          <span class="subject-icon">⚗️</span>
+          <div class="subject-name">Chemistry</div>
+          <div class="subject-code">O-CHEM · S1–S4</div>
+        </div>
+        <div class="subject-card">
+          <span class="subject-icon">⚡</span>
+          <div class="subject-name">Physics</div>
+          <div class="subject-code">O-PHY · S1–S4</div>
+        </div>
+        <div class="subject-card">
+          <span class="subject-icon">📐</span>
+          <div class="subject-name">Mathematics</div>
+          <div class="subject-code">O-MATH · S1–S4</div>
+        </div>
+        <div class="subject-card">
+          <span class="subject-icon">💻</span>
+          <div class="subject-name">Computer Studies</div>
+          <div class="subject-code">O-COMP · S1–S4</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A-LEVEL -->
+    <div class="level-content" id="level-alevel">
+      <div class="level-intro">
+        <div class="level-badge">
+          <div class="level-badge-code">A–L</div>
+          <div class="level-badge-name">Advanced Level</div>
+          <div class="level-badge-classes">Senior 5 to Senior 6</div>
+        </div>
+        <div>
+          <h2 class="level-desc-title">Advanced Level Science & Computing</h2>
+          <p class="level-desc-text">The Advanced Level program is designed for S5 and S6 learners pursuing higher academic achievement in Science and Computing. Content is deeply aligned with the NCDC A-Level syllabus and prepares students for the Uganda Advanced Certificate of Education (UACE). Modules are structured to support rigorous study and conceptual mastery at a university-preparatory level.</p>
+          <div style="margin-top:1.5rem;padding:1.25rem;background:var(--gold-pale);border-left:3px solid var(--gold);">
+            <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:2px;color:var(--navy);text-transform:uppercase;margin-bottom:4px;">Exam Target</div>
+            <div style="font-family:var(--ff-display);font-size:18px;font-weight:600;color:var(--text-dark);">Uganda Advanced Certificate of Education (UACE)</div>
+          </div>
+        </div>
+      </div>
+      <div class="subjects-grid">
+        <div class="subject-card">
+          <span class="subject-icon">🧬</span>
+          <div class="subject-name">Biology</div>
+          <div class="subject-code">A-BIO · S5–S6</div>
+        </div>
+        <div class="subject-card">
+          <span class="subject-icon">🔬</span>
+          <div class="subject-name">Chemistry</div>
+          <div class="subject-code">A-CHEM · S5–S6</div>
+        </div>
+        <div class="subject-card">
+          <span class="subject-icon">🌌</span>
+          <div class="subject-name">Physics</div>
+          <div class="subject-code">A-PHY · S5–S6</div>
+        </div>
+        <div class="subject-card">
+          <span class="subject-icon">∑</span>
+          <div class="subject-name">Mathematics</div>
+          <div class="subject-code">A-MATH · S5–S6</div>
+        </div>
+        <div class="subject-card">
+          <span class="subject-icon">🖥️</span>
+          <div class="subject-name">Computer Studies</div>
+          <div class="subject-code">A-COMP · S5–S6</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELIVERY MODEL -->
+  <div class="delivery-section">
+    <div class="section-eyebrow" style="color:var(--gold);">How We Teach</div>
+    <h2 class="section-title" style="color:var(--white);">Learning Delivery Model</h2>
+    <div class="delivery-grid">
+      <div class="delivery-card">
+        <div class="delivery-num">A</div>
+        <div class="delivery-name">Self-Paced Learning</div>
+        <p class="delivery-text">Students access structured learning modules and study at their own pace. Lessons are available on-demand — no fixed timetable required.</p>
+      </div>
+      <div class="delivery-card">
+        <div class="delivery-num">B</div>
+        <div class="delivery-name">Instructor Support</div>
+        <p class="delivery-text">Qualified teachers provide guidance, clarification, and feedback through Google Classroom and Canvas LMS — ensuring no learner is left behind.</p>
+      </div>
+      <div class="delivery-card">
+        <div class="delivery-num">C</div>
+        <div class="delivery-name">Digital Platforms</div>
+        <p class="delivery-text">Learning is delivered via our Official Website, Google Classroom for lesson delivery and communication, and Canvas LMS for structured module management.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASSESSMENT -->
+  <div class="assessment-section">
+    <div class="section-eyebrow">Track Progress</div>
+    <h2 class="section-title">Continuous Assessment</h2>
+    <p class="section-desc" style="margin-top:0.75rem;">Students are continuously evaluated to ensure academic progress and readiness for national examinations.</p>
+    <div class="assessment-row">
+      <div class="assess-pill">📝 Quizzes</div>
+      <div class="assess-pill">📋 Assignments</div>
+      <div class="assess-pill">🧪 Topic Tests</div>
+      <div class="assess-pill">📊 End-of-Term Exams</div>
+      <div class="assess-pill">💬 Instructor Feedback</div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-section">
+    <div class="section-eyebrow">Getting Started</div>
+    <h2 class="section-title">How It Works</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-step-circle"><div class="how-step-num">1</div></div>
+        <div class="how-step-name">Register &amp; Enroll</div>
+        <p class="how-step-text">Sign up online and select your class level and subjects</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-circle"><div class="how-step-num">2</div></div>
+        <div class="how-step-name">Access Materials</div>
+        <p class="how-step-text">Structured modules provided per subject are made available instantly</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-circle"><div class="how-step-num">3</div></div>
+        <div class="how-step-name">Study Independently</div>
+        <p class="how-step-text">Learn anytime, anywhere at your own pace — no fixed timetable</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-circle"><div class="how-step-num">4</div></div>
+        <div class="how-step-name">Complete Assessments</div>
+        <p class="how-step-text">Track progress through continuous quizzes, tests, and assignments</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-circle"><div class="how-step-num">5</div></div>
+        <div class="how-step-name">Receive Support</div>
+        <p class="how-step-text">Interact with qualified instructors for academic guidance and feedback</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENROLL CTA -->
+  <div class="enroll-strip">
+    <div>
+      <div class="enroll-strip-text">Ready to Enroll in a Program?</div>
+      <div class="enroll-strip-sub">Contact us today — classes are open for all secondary levels</div>
+    </div>
+    <a href="#" class="btn-navy" onclick="showSection('contact'); return false;">Enroll Now →</a>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Nexus Bridge Academy</div>
+        <div class="footer-brand-motto">Science for the Future</div>
+        <p class="footer-brand-desc">Structured, self-paced virtual learning in Science and Computing — aligned with Uganda's NCDC curriculum.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Navigation</div>
+        <ul>
+          <li><a href="#" onclick="showSection('home'); return false;">Home</a></li>
+          <li><a href="#" onclick="showSection('about'); return false;">About</a></li>
+          <li><a href="#" onclick="showSection('programs'); return false;">Programs</a></li>
+          <li><a href="#" onclick="showSection('contact'); return false;">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Programs</div>
+        <ul>
+          <li><a href="#">O-Level (S1–S4)</a></li>
+          <li><a href="#">A-Level (S5–S6)</a></li>
+          <li><a href="#">Biology</a></li>
+          <li><a href="#">Chemistry</a></li>
+          <li><a href="#">Physics</a></li>
+          <li><a href="#">Mathematics</a></li>
+          <li><a href="#">Computer Studies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contact</div>
+        <ul>
+          <li><a href="tel:+256793336401">+256 793 336 401</a></li>
+          <li><a href="mailto:info@nexusbridge.ac.ug">info@nexusbridge.ac.ug</a></li>
+          <li><a href="http://www.nexusbridge.ac.ug">www.nexusbridge.ac.ug</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2025 Nexus Bridge Academy. All rights reserved.</div>
+      <div class="footer-ref">Ref: NBA001/1</div>
+    </div>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════ -->
+<section id="contact" class="page-in">
+  <div class="contact-hero">
+    <div class="about-hero-content">
+      <div class="hero-eyebrow" style="color:var(--gold);font-family:var(--ff-mono);font-size:11px;letter-spacing:4px;display:flex;align-items:center;gap:12px;margin-bottom:1rem;text-transform:uppercase;">
+        <span style="display:block;width:28px;height:1px;background:var(--gold);"></span>
+        Get In Touch
+      </div>
+      <h1 class="page-title">Contact Us</h1>
+      <p class="page-subtitle">Enroll, inquire about programs, or send us a message. Our team is ready to guide your academic journey.</p>
+    </div>
+  </div>
+
+  <div class="contact-body">
+    <!-- INFO SIDE -->
+    <div class="contact-info">
+      <div class="contact-details-title">Reach the Academy</div>
+
+      <div class="contact-detail-item">
+        <div class="contact-detail-icon">📞</div>
+        <div>
+          <span class="contact-detail-label">Telephone</span>
+          <div class="contact-detail-val"><a href="tel:+256793336401" style="color:var(--white);text-decoration:none;">+256 793 336 401</a></div>
+          <div class="contact-detail-sub">Available Monday–Saturday, 8am–6pm</div>
+        </div>
+      </div>
+
+      <div class="contact-detail-item">
+        <div class="contact-detail-icon">✉️</div>
+        <div>
+          <span class="contact-detail-label">Email</span>
+          <div class="contact-detail-val"><a href="mailto:info@nexusbridge.ac.ug" style="color:var(--gold-light);text-decoration:none;">info@nexusbridge.ac.ug</a></div>
+          <div class="contact-detail-sub">General inquiries & enrollment</div>
+        </div>
+      </div>
+
+      <div class="contact-detail-item">
+        <div class="contact-detail-icon">🌐</div>
+        <div>
+          <span class="contact-detail-label">Website</span>
+          <div class="contact-detail-val"><a href="http://www.nexusbridge.ac.ug" style="color:var(--gold-light);text-decoration:none;">www.nexusbridge.ac.ug</a></div>
+          <div class="contact-detail-sub">Official portal — coming soon</div>
+        </div>
+      </div>
+
+      <div class="contact-detail-item">
+        <div class="contact-detail-icon">📡</div>
+        <div>
+          <span class="contact-detail-label">Cable Address</span>
+          <div class="contact-detail-val" style="font-family:var(--ff-mono);font-size:14px;">"nexusbridge"</div>
+          <div class="contact-detail-sub">For official correspondence</div>
+        </div>
+      </div>
+
+      <div class="contact-detail-item">
+        <div class="contact-detail-icon">📚</div>
+        <div>
+          <span class="contact-detail-label">Google Classroom</span>
+          <div class="contact-detail-val" style="font-size:14px;">Available after enrollment</div>
+          <div class="contact-detail-sub">Lesson delivery, assignments & communication</div>
+        </div>
+      </div>
+
+      <div class="connect-note">
+        <div class="connect-note-text">"Start your journey toward academic excellence today — enroll and bridge your learning gap."</div>
+      </div>
+
+      <div style="margin-top:2rem;padding:1.5rem;border:1px solid rgba(201,162,39,0.25);">
+        <div style="font-family:var(--ff-mono);font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:0.75rem;">Reference</div>
+        <div style="font-family:var(--ff-mono);font-size:13px;color:rgba(250,252,255,0.65);line-height:2;">
+          Ref: NBA001/1<br>
+          Institution Profile Document 1.0
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM SIDE -->
+    <div class="contact-form-area">
+      <h2 class="form-title">Send Us a Message</h2>
+      <p class="form-sub">Complete the form below and a member of our academic team will respond promptly to assist with enrollment, subject queries, or general information.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Full Name *</label>
+          <input type="text" class="form-input" id="f-name" placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number *</label>
+          <input type="tel" class="form-input" id="f-phone" placeholder="+256 7XX XXX XXX">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address *</label>
+        <input type="email" class="form-input" id="f-email" placeholder="your@email.com">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Academic Level *</label>
+          <select class="form-select" id="f-level">
+            <option value="">— Select Level —</option>
+            <option>Ordinary Level (S1–S4)</option>
+            <option>Advanced Level (S5–S6)</option>
+            <option>Both Levels</option>
+            <option>Not Sure</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject of Interest</label>
+          <select class="form-select" id="f-subject">
+            <option value="">— Select Subject —</option>
+            <option>Biology</option>
+            <option>Chemistry</option>
+            <option>Physics</option>
+            <option>Mathematics</option>
+            <option>Computer Studies</option>
+            <option>All Subjects</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Inquiry Type</label>
+        <select class="form-select" id="f-inquiry">
+          <option value="">— Select —</option>
+          <option>Enrollment / Registration</option>
+          <option>Program Information</option>
+          <option>Fees & Payment</option>
+          <option>Weekend / Holiday Classes</option>
+          <option>Exam Preparation</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message *</label>
+        <textarea class="form-textarea" id="f-message" placeholder="Tell us about your academic goals, questions about the programs, or how we can help you bridge the gap..."></textarea>
+      </div>
+      <button class="form-submit" onclick="submitContactForm()">Send Message →</button>
+      <div class="form-success" id="form-success">
+        ✅ Your message has been sent to Nexus Bridge Academy. We will get back to you shortly. Thank you for reaching out!
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Nexus Bridge Academy</div>
+        <div class="footer-brand-motto">Science for the Future</div>
+        <p class="footer-brand-desc">Virtual academic support for secondary school students in Uganda — bridging learning gaps with structured, curriculum-aligned education.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Navigation</div>
+        <ul>
+          <li><a href="#" onclick="showSection('home'); return false;">Home</a></li>
+          <li><a href="#" onclick="showSection('about'); return false;">About</a></li>
+          <li><a href="#" onclick="showSection('programs'); return false;">Programs</a></li>
+          <li><a href="#" onclick="showSection('contact'); return false;">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Programs</div>
+        <ul>
+          <li><a href="#">O-Level (S1–S4)</a></li>
+          <li><a href="#">A-Level (S5–S6)</a></li>
+          <li><a href="#">UCE Preparation</a></li>
+          <li><a href="#">UACE Preparation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contact Info</div>
+        <ul>
+          <li><a href="tel:+256793336401">+256 793 336 401</a></li>
+          <li><a href="mailto:info@nexusbridge.ac.ug">info@nexusbridge.ac.ug</a></li>
+          <li><a href="http://www.nexusbridge.ac.ug">www.nexusbridge.ac.ug</a></li>
+          <li><a href="#">Cables: "nexusbridge"</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2025 Nexus Bridge Academy. All rights reserved.</div>
+      <div class="footer-ref">Ref: NBA001/1 · Profile Document 1.0</div>
+    </div>
+  </footer>
+</section>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── NAVIGATION ──
+function showSection(id) {
+  document.querySelectorAll('section').forEach(s => {
+    s.classList.remove('active');
+    s.classList.remove('page-in');
+  });
+  const el = document.getElementById(id);
+  el.classList.add('active');
+  void el.offsetWidth; // reflow for animation
+  el.classList.add('page-in');
+
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + id);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ── LEVEL TABS ──
+function switchLevel(level, btn) {
+  document.querySelectorAll('.level-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.level-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('level-' + level).classList.add('active');
+}
+
+// ── CONTACT FORM ──
+function submitContactForm() {
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const level = document.getElementById('f-level').value;
+  const message = document.getElementById('f-message').value.trim();
+
+  if (!name || !phone || !email || !level || !message) {
+    showToast('Please fill in all required fields.');
+    return;
+  }
+  if (!email.includes('@')) {
+    showToast('Please enter a valid email address.');
+    return;
+  }
+
+  const subject = `Nexus Bridge Academy Inquiry – ${name}`;
+  const body = `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nLevel: ${level}\nSubject: ${document.getElementById('f-subject').value}\nInquiry Type: ${document.getElementById('f-inquiry').value}\n\nMessage:\n${message}`;
+  window.location.href = `mailto:info@nexusbridge.ac.ug?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  document.getElementById('form-success').style.display = 'block';
+  ['f-name','f-phone','f-email','f-message'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-level').value = '';
+  document.getElementById('f-subject').value = '';
+  document.getElementById('f-inquiry').value = '';
+  showToast('Message sent successfully!', true);
+}
+
+// ── TOAST ──
+function showToast(msg, success) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.borderLeftColor = success ? '#2A7A2A' : 'var(--gold)';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+</script>
+</body>
+</html>
